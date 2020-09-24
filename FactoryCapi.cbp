@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="FactoryCapi" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/FactoryCapi" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/FactoryCapi" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-std=c++14" />
+			<Add directory="../../Bibliothèque/SFML-2.5.1/include" />
+			<Add directory="../../Bibliothèque/rapidjson-master/include" />
+		</Compiler>
+		<Linker>
+			<Add library="sfml-network" />
+			<Add library="sfml-audio" />
+			<Add library="sfml-graphics" />
+			<Add library="sfml-window" />
+			<Add library="sfml-system" />
+			<Add directory="../../Bibliothèque/SFML-2.5.1/lib" />
+		</Linker>
+		<Unit filename="sources/Entity/Building/AssemblingMachine1.cpp" />
+		<Unit filename="sources/Entity/Building/AssemblingMachine1.h" />
+		<Unit filename="sources/Entity/Building/Building.cpp" />
+		<Unit filename="sources/Entity/Building/Building.h" />
+		<Unit filename="sources/Entity/Building/BuildingType.cpp" />
+		<Unit filename="sources/Entity/Building/BuildingType.h" />
+		<Unit filename="sources/Entity/Building/Chest1.cpp" />
+		<Unit filename="sources/Entity/Building/Chest1.h" />
+		<Unit filename="sources/Entity/Entity.cpp" />
+		<Unit filename="sources/Entity/Entity.h" />
+		<Unit filename="sources/Entity/PhysicalItem/PhysicalItem.cpp" />
+		<Unit filename="sources/Entity/PhysicalItem/PhysicalItem.h" />
+		<Unit filename="sources/Entity/TransportSystem/Belt1.cpp" />
+		<Unit filename="sources/Entity/TransportSystem/Belt1.h" />
+		<Unit filename="sources/Entity/TransportSystem/TransportSystem.cpp" />
+		<Unit filename="sources/Entity/TransportSystem/TransportSystem.h" />
+		<Unit filename="sources/Entity/TransportSystem/TransportType.cpp" />
+		<Unit filename="sources/Entity/TransportSystem/TransportType.h" />
+		<Unit filename="sources/Item/Item.cpp" />
+		<Unit filename="sources/Item/Item.h" />
+		<Unit filename="sources/Item/ItemType.cpp" />
+		<Unit filename="sources/Item/ItemType.h" />
+		<Unit filename="sources/Map/Map.cpp" />
+		<Unit filename="sources/Map/Map.h" />
+		<Unit filename="sources/Map/TerrainType.cpp" />
+		<Unit filename="sources/Map/TerrainType.h" />
+		<Unit filename="sources/MusicManager.cpp" />
+		<Unit filename="sources/MusicManager.h" />
+		<Unit filename="sources/OptionManager.cpp" />
+		<Unit filename="sources/OptionManager.h" />
+		<Unit filename="sources/SoundLoader.cpp" />
+		<Unit filename="sources/SoundLoader.h" />
+		<Unit filename="sources/TextureLoader.cpp" />
+		<Unit filename="sources/TextureLoader.h" />
+		<Unit filename="sources/main.cpp" />
+		<Unit filename="sources/utile.cpp" />
+		<Unit filename="sources/utile.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

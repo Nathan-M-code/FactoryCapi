@@ -1,0 +1,39 @@
+MMO
+Factorio like
+Chacun a son usine
+Chacun peut vendre ou acheter les objets d'autre personne
+Système économique complet
+Jeu 2d mode terraria
+pipe pour le transport des items
+bras robotise
+machine qui craft auto
+launcher
+base de donnée
+
+-System horaire parallèle a l'IRL
+
+-Tous les items sont craftables, achetables, vendables ou détruisables (payants).
+-Une fois un batiment crafté, on ne peut plus le desassembler en materiaux
+-Les joueurs obtiennent une premiere map random en ressource
+-Les joueurs peuvent acheter de nouvelles maps
+-Les transferts de marchandise se font en fonction de la distance via des moyens de transport de l'un ou l'autre joueur
+-Les moyens de transports et la plupart des batiments peuvent etre améliorer via un autre batiment -> exemple four simple mais remplacable en four amelioré (autre batiment). L'ancien four peut etre vendu ou stocké.
+-Les objets sont stockés dans des zones prevus à cet effet, ce sont des batiments (soit ciel ouvert ou entrepot). La zone devra etre plus grande pour stocker plus d'objet.
+-Les ressources de base sont le bois, quelques metaux, des fluides comme l'eau et quelques composants chimiques.
+-Tout fonctionne avec de l'electricité que l'on peut aussi produire, vendre et/ou acheter.
+-Les moyens de transport ont des avantages et inconvenients.
+
+
+-Les joueurs peuvent se regrouper sous forme de compagnie. Les compagnies mettent leur resultat en commun puis redistribue l'argent aux membres avec un pourcentage choisi par le chef de la companie. Le maintien de la compagnie coute de l'argent.
+-La création d'une multinational coute beaucoup d'argent.
+-Le chef de la compagnie est dans un premier temps celui qui créer la compagnie. Cependant, apres un certain temps, des elections seront mises en place pour elir un chef.
+-L'organisation des membres d'une compagnie est libre. Certaines se repartiront les taches et s'entraideront tandis que d'autre se focaliseront sur une action précise.
+
+-Achievement pour plus de plaisir en solo
+
+//--------plus technique----------------
+-Une ligne d'item par belt
+-Si la consommation d'electricité est plus elevée que la production, il y a un court-circuit comme sur satisfactory.
+-Les entrepots sont liés à un moyen de transport, si moyen bateau -> l'entrepot doit etre a coté d'une rivière. si moyen routier -> a coté d'une route. si moyen aerien -> n'importe ou.
+-Le joueur peut changer ses touches de raccourcis
+-sauvegarde en JSON sur la BD
