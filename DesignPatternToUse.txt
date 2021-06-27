@@ -1,7 +1,0 @@
-Command
-flyweight: A Place To Put Down Roots : https://gameprogrammingpatterns.com/images/flyweight-tiles.png
-
-Observer for achievements
-
-double buffering automatic with SFML
-Game loop time handle: Fixed update time step, variable rendering:

@@ -1,3 +1,0 @@
-speedcam:15
-musicvolume:1
-fxvolume:1
