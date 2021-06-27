@@ -1,0 +1,51 @@
+{
+	"items" : [
+		{
+			"num" : 0,
+			"nameType" : "Wood",
+			"texturePath" : "data/item/wood/uhr-wood.png",
+			"maxStack" : 100,
+			"nbSecCollectTime" : 2
+		},
+
+		{
+			"num" : 1,
+			"nameType" : "Coal",
+			"texturePath" : "data/item/coal/uhr-coal.png",
+			"maxStack" : 100,
+			"nbSecCollectTime" : 4
+		},
+
+		{
+			"num" : 2,
+			"nameType" : "Iron",
+			"texturePath" : "data/item/iron/uhr-iron.png",
+			"maxStack" : 100,
+			"nbSecCollectTime" : 4
+		},
+
+		{
+			"num" : 3,
+			"nameType" : "Copper",
+			"texturePath" : "data/item/copper/uhr-copper.png",
+			"maxStack" : 100,
+			"nbSecCollectTime" : 4
+		},
+
+		{
+			"num" : 4,
+			"nameType" : "Assembling Machine 1",
+			"texturePath" : "data/item/assemblingMachine1/uhr-assemblingMachine1.png",
+			"maxStack" : 5,
+			"nbSecCollectTime" : 0
+		},
+
+		{
+			"num" : 5,
+			"nameType" : "Water Barrel",
+			"texturePath" : "data/item/waterBarrel/uhr-waterBarrel.png",
+			"maxStack" : 100,
+			"nbSecCollectTime" : 1
+		}
+	]
+}

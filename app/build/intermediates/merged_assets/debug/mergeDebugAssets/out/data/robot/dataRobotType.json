@@ -1,0 +1,14 @@
+{
+	"robots" : [
+		{
+			"num" : 1,
+			"nameType" : "Construction1",
+			"texturePath" : ["data/robot/hr-construction-robot.png"],
+			"boucingSpriteSheet" : [false],
+			"nbColSheet" : 1,
+			"nbRowSheet" : 2,
+			"sizeX" : 100,
+			"sizeY" : 110
+		}
+	]
+}

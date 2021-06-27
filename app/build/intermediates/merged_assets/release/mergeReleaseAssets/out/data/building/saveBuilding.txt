@@ -1,0 +1,29 @@
+{
+			"num" : 4,
+			"nameType" : "Inserter1",
+
+			"particularity" :
+			{
+				"itemPerSec" : 4.0
+			},
+
+			"texturePath" : ["data/building/inserter1/inserterNtoS.png",
+							 "data/building/inserter1/inserterStoN.png",
+							 "data/building/inserter1/inserterEtoW.png",
+							 "data/building/inserter1/inserterWtoE.png"
+							],
+			"boucingSpriteSheet" : [false,
+									false,
+									false,
+									false],
+			"nbColSheet" : 5,
+			"nbRowSheet" : 4,
+			"nbCyclePerSecond" : 1,
+			"sizeX" : 64,
+			"sizeY" : 64,
+			"nbColSizeBox" : 1,
+			"nbRowSizeBox" : 1,
+			"orientationMode" : "4",
+			"hasQuality" : true,
+			"constructionTime" : 1
+		},

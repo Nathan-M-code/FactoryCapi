@@ -1,0 +1,181 @@
+{
+	"buildings" : [
+		{
+			"num" : 0,
+			"nameType" : "Belt1",
+
+			"particularity" :
+			{
+				"itemPerSec" : 4.0
+			},
+
+			"texturePath" : ["data/building/belt1/hr-belt1.png"],
+			"bouncingSpriteSheet" : [false],
+			"nbColSheet" : [32],
+			"nbRowSheet" : [1],
+			"nbCyclePerSecond" : 1.0,
+			"sizeX" : [128],
+			"sizeY" : [128],
+			"nbColSizeBox" : [1],
+			"nbRowSizeBox" : [1],
+			"orientationMode" : "8",
+			"hasQuality" : false,
+			"constructionTime" : 1
+		},
+
+		{
+			"num" : 1,
+			"nameType" : "Chest1",
+
+			"particularity" :
+			{
+				"slot" : 15
+			},
+			
+			"texturePath" : ["data/building/chest/uhr-chest1.png"],
+			"bouncingSpriteSheet" : [false],
+			"nbColSheet" : [1],
+			"nbRowSheet" : [1],
+			"nbCyclePerSecond" : 1.0,
+			"sizeX" : [64],
+			"sizeY" : [80],
+			"nbColSizeBox" : [1],
+			"nbRowSizeBox" : [1],
+			"orientationMode" : "0",
+			"hasQuality" : false,
+			"constructionTime" : 1
+		},
+
+		{
+			"num" : 2,
+			"nameType" : "AssemblingMachine1",
+
+			"particularity" :
+			{
+				"nbInput" : 2
+			},
+			
+			"texturePath" : ["data/building/assemblingMachine1/uhr-assemblingMachine1.png"],
+			"bouncingSpriteSheet" : [false],
+			"nbColSheet" : [8],
+			"nbRowSheet" : [4],
+			"nbCyclePerSecond" : 2.0,
+			"sizeX" : [192],
+			"sizeY" : [215],
+			"nbColSizeBox" : [3],
+			"nbRowSizeBox" : [3],
+			"orientationMode" : "0",
+			"hasQuality" : true,
+			"constructionTime" : 1
+		},
+
+		{
+			"num" : 3,
+			"nameType" : "Drill1",
+			
+			"texturePath" : ["data/building/drill1/uhr-drill1.png"],
+			"bouncingSpriteSheet" : [true],
+			"nbColSheet" : [8],
+			"nbRowSheet" : [8],
+			"nbCyclePerSecond" : 0.5,
+			"sizeX" : [256],
+			"sizeY" : [256],
+			"nbColSizeBox" : [4],
+			"nbRowSizeBox" : [4],
+			"orientationMode" : "0",
+			"hasQuality" : true,
+			"constructionTime" : 1
+		},
+
+		{
+			"num" : 4,
+			"nameType" : "Pump",
+
+			"texturePath" : ["data/building/pump/hr-pump-StoN.png",
+							"data/building/pump/hr-pump-WtoE.png",
+							"data/building/pump/hr-pump-NtoS.png",
+							"data/building/pump/hr-pump-EtoW.png"
+							],
+			"bouncingSpriteSheet" : [false,
+									false,
+									false,
+									false],
+
+			"nbColSheet" : [8,8,8,8],
+			"nbRowSheet" : [4,4,4,4],
+			"nbCyclePerSecond" : 1,
+			"sizeX" : [64,128,64,128],
+			"sizeY" : [128,64,128,64],
+			"nbColSizeBox" : [1,2,1,2],
+			"nbRowSizeBox" : [2,1,2,1],
+			"orientationMode" : "4",
+			"hasQuality" : true,
+			"constructionTime" : 1
+		},
+
+		{
+			"num" : 5,
+			"nameType" : "Boiler",
+
+			"particularity" :
+			{
+				"nbInput" : 2
+			},
+
+			"texturePath" : ["data/building/boiler/hr-boiler-StoN-idle.png",
+							 "data/building/boiler/hr-boiler-WtoE-idle.png",
+							 "data/building/boiler/hr-boiler-NtoS-idle.png",
+							 "data/building/boiler/hr-boiler-EtoW-idle.png"
+							],
+			"bouncingSpriteSheet" : [false,
+				false,
+				false,
+				false],
+
+			"nbColSheet" : [1,1,1,1],
+			"nbRowSheet" : [1,1,1,1],
+			"nbCyclePerSecond" : 1,
+			"sizeX" : [256,150,256,150],
+			"sizeY" : [150,256,150,256],
+			"nbColSizeBox" : [4,2,4,2],
+			"nbRowSizeBox" : [2,4,2,4],
+			"orientationMode" : "4",
+			"hasQuality" : true,
+			"constructionTime" : 1
+		},
+
+		{
+			"num" : 6,
+			"nameType" : "Pole1",
+
+			"particularity" :
+			{
+				"nbTileNORD" : 4,
+				"nbTileSOUTH" : 2,
+				"nbTileWEST" : 2,
+				"nbTileEAST" : 2
+			},
+
+			"texturePath" : ["data/building/ElectricalBuilding/pole1/uhr-pole1-0.png",
+							 "data/building/ElectricalBuilding/pole1/uhr-pole1-1.png",
+							 "data/building/ElectricalBuilding/pole1/uhr-pole1-2.png",
+							 "data/building/ElectricalBuilding/pole1/uhr-pole1-3.png"
+							],
+			"bouncingSpriteSheet" : [false,
+				false,
+				false,
+				false],
+
+			"nbColSheet" : [1,1,1,1],
+			"nbRowSheet" : [1,1,1,1],
+			"nbCyclePerSecond" : 1,
+			"sizeX" : [64,64,64,64],
+			"sizeY" : [128,128,128,128],
+			"nbColSizeBox" : [1,1,1,1],
+			"nbRowSizeBox" : [1,1,1,1],
+			"orientationMode" : "0",
+			"hasQuality" : true,
+			"constructionTime" : 1
+		}
+	]
+}

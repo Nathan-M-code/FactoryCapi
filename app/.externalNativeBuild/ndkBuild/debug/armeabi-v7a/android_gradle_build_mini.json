@@ -1,0 +1,17 @@
+{
+  "buildFiles": [
+    "D:\\FactoryCapi\\app\\src\\main\\jni\\Android.mk",
+    "D:\\FactoryCapi\\app\\src\\main\\jni\\Application.mk"
+  ],
+  "cleanCommands": [
+    "D:\\dev\\android-ndk-r17c\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dD:\\FactoryCapi\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dD:\\FactoryCapi\\app\\src\\main\\jni\\Application.mk APP_ABI\u003darmeabi-v7a NDK_ALL_ABIS\u003darmeabi-v7a NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-19 NDK_OUT\u003dD:/FactoryCapi/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dD:\\FactoryCapi\\app\\build\\intermediates\\ndkBuild\\debug\\lib clean"
+  ],
+  "libraries": {
+    "sfml-example-debug-armeabi-v7a": {
+      "artifactName": "sfml-example",
+      "buildCommand": "D:\\dev\\android-ndk-r17c\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dD:\\FactoryCapi\\app\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dD:\\FactoryCapi\\app\\src\\main\\jni\\Application.mk APP_ABI\u003darmeabi-v7a NDK_ALL_ABIS\u003darmeabi-v7a NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-19 NDK_OUT\u003dD:/FactoryCapi/app/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dD:\\FactoryCapi\\app\\build\\intermediates\\ndkBuild\\debug\\lib D:/FactoryCapi/app/build/intermediates/ndkBuild/debug/obj/local/armeabi-v7a/libsfml-example.so",
+      "abi": "armeabi-v7a",
+      "output": "D:\\FactoryCapi\\app\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\armeabi-v7a\\libsfml-example.so"
+    }
+  }
+}

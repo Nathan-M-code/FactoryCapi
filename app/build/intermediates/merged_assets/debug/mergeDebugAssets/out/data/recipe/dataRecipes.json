@@ -1,0 +1,77 @@
+{
+  "recipes" : [
+
+    [
+      {
+        "ingredients" : [2],
+        "amount" : [5],
+        "dataIngredient" : [],
+        "result" : [3],
+        "amountRes" : [1],
+        "dataRes" : [],
+        "timeSec" : 3.5
+      }
+    ],
+
+
+
+    [
+      {
+        "ingredients" : [0, 1],
+        "amount" : [2, 1],
+        "dataIngredient" : [],
+        "result" : [2],
+        "amountRes" : [60],
+        "dataRes" : [],
+        "timeSec" : 4
+      },
+
+      {
+        "ingredients" : [1, 5],
+        "amount" : [1, 1],
+        "dataIngredient" : [],
+        "result" : [1,"electricity"],
+        "amountRes" : [5,300],
+        "dataRes" : [],
+        "timeSec" : 1
+      },
+
+      {
+        "ingredients" : [4, 2],
+        "amount" : [1, 5],
+        "dataIngredient" : [
+                              {
+                                "index" : 0,
+                                "DATA_QUALITY" : "NORMAL"
+                              }
+                           ],
+        "result" : [2, 4],
+        "amountRes" : [2, 1],
+        "dataRes" : [
+                      {
+                        "index" : 1,
+                        "DATA_QUALITY" : "EXCELLENT"
+                      }
+                    ],
+        "timeSec" : 3
+      }
+    ],
+
+
+
+
+    [
+      {
+        "ingredients" : [0, 1, 2],
+        "amount" : [2, 2, 2],
+        "dataIngredient" : [],
+        "result" : [3,2],
+        "amountRes" : [10,4],
+        "dataRes" : [],
+        "timeSec" : 6
+      }
+    ]
+
+
+  ]
+}
