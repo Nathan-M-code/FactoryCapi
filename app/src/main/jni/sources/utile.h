@@ -81,6 +81,9 @@ bool approximatelyEqual(float a, float b);
 bool essentiallyEqual(float a, float b);
 bool definitelyGreaterThan(float a, float b);
 bool definitelyLessThan(float a, float b);
+double distance(sf::Vector2f coo1, sf::Vector2f coo2);
+double distance(sf::Vector2i coo1, sf::Vector2i coo2);
+sf::Vector2f getCenter(sf::Vector2f coo1, sf::Vector2f coo2);
 
 int rand_a_b(int a,int b); //[a,b[
 

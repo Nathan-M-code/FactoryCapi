@@ -243,6 +243,18 @@ bool definitelyLessThan(float a, float b)
     return (b - a) > ( (fabs(a) < fabs(b) ? fabs(b) : fabs(a)) * EPSILON);
 }
 
+double distance(sf::Vector2f coo1, sf::Vector2f coo2){
+    return sqrt(pow(coo2.x-coo1.x,2)+pow(coo2.y-coo1.y,2));
+}
+
+double distance(sf::Vector2i coo1, sf::Vector2i coo2){
+    return sqrt(pow(coo2.x-coo1.x,2)+pow(coo2.y-coo1.y,2));
+}
+
+Vector2f getCenter(sf::Vector2f coo1, sf::Vector2f coo2){
+    return Vector2f(round((coo2.x+coo1.x)/2.0),round((coo2.y+coo1.y)/2.0));
+}
+
 void initTextStyle(sf::Text &text, sf::Font *font, unsigned size){
     text.setFont(*font);
     text.setCharacterSize(size);

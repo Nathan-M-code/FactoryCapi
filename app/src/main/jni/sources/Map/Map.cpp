@@ -17,6 +17,7 @@ Map::Map(sf::RenderWindow* renderWindow): m_buildMode(BuildMode(this))
     Vector2i screenSize = OptionManager::getScreenSize();
     m_view = View(FloatRect(0,0,screenSize.x,screenSize.y));
     m_speedView = OptionManager::getSpeedCam();
+    m_movingView = false;
 
     initTextStyle(m_textCamera,DataLoader::getFont(),12);
 
@@ -118,45 +119,68 @@ void Map::checkViewPos(){
     m_view.setCenter(round(m_view.getCenter().x), round(m_view.getCenter().y));
 }
 
-void Map::moveView(){
-    bool z = Keyboard::isKeyPressed(Keyboard::Key::Z);
-    bool q = Keyboard::isKeyPressed(Keyboard::Key::Q);
-    bool s = Keyboard::isKeyPressed(Keyboard::Key::S);
-    bool d = Keyboard::isKeyPressed(Keyboard::Key::D);
-    if(z||q||s||d){
-        if(z){
-            m_view.move(0,-m_speedView);
-        }
-        if(q){
-            m_view.move(-m_speedView,0);
-        }
-        if(s){
-            m_view.move(0,m_speedView);
-        }
-        if(d){
-            m_view.move(m_speedView,0);
-        }
-        checkViewPos();
-        updatePosVariables();
-        m_buildMode.updatePos(m_posTileBuilding);
-    }
+//method 2:save the original pos of finger and move the view in relation to
+void Map::moveViewWithFinger(){
+    Vector2i cooScreen = m_listCooScreenFinger.at(0);
+    Vector2f cooMap = m_renderWindow->mapPixelToCoords(cooScreen,m_saveViewStartMovingView);
+
+    Vector2i delta(cooMap.x-m_saveCooMapFinger1StartMovingView.x, cooMap.y-m_saveCooMapFinger1StartMovingView.y);
+
+    /*Broadcast::announce(to_string(cooScreen.x)+" "+to_string(cooScreen.y)+"\n"
+                        +to_string(m_saveCooMapFinger1StartMovingView.x)+" "+to_string(m_saveCooMapFinger1StartMovingView.y)+"\n"
+                        +to_string(delta.x)+" "+to_string(delta.y)+"\n"
+                        +to_string(m_saveViewStartMovingView.getCenter().x)+" "+to_string(m_saveViewStartMovingView.getCenter().y)+"\n",1,Vector2f(10,200));*/
+
+    m_view.setCenter(m_saveViewStartMovingView.getCenter().x-delta.x, m_saveViewStartMovingView.getCenter().y-delta.y);
+    checkViewPos();
+
+    //m_buildMode.updatePos(m_posTileBuilding);
 }
 
-void Map::zoomView(int delta){
-    if(delta>0){ //zoom in delta>0
-        m_view.zoom(0.7);
-        if(m_view.getSize().x <= 500){
-            m_view.setSize(500,281.25);
-        }
-    }else if(delta<0){ //zoom out delat<0
-        m_view.zoom(1.3);
-        if(m_view.getSize().x >= 3500){
-            m_view.setSize(3500,1968.75);
-        }
+void Map::zoomViewWithFinger() {
+    Vector2i cooScreenFinger1 = m_listCooScreenFinger.at(0);
+    Vector2i cooScreenFinger2 = m_listCooScreenFinger.at(1);
+
+    Vector2f cooMapFinger1CurrentView = m_renderWindow->mapPixelToCoords(cooScreenFinger1,m_view);
+    Vector2f cooMapFinger2CurrentView = m_renderWindow->mapPixelToCoords(cooScreenFinger2,m_view);
+
+    /*Vector2f center = getCenter(cooMapFinger1CurrentView, cooMapFinger2CurrentView);
+    Vector2f deltaCenter(center.x-m_view.getCenter().x, center.y-m_view.getCenter().y);*/
+
+    //previous dist
+    double dist = distance(m_saveCooScreenFinger1StartMovingView, m_saveCooScreenFinger2StartMovingView);
+
+    //new dist
+    double newDist = distance(cooScreenFinger1, cooScreenFinger2);
+
+    double scalar = dist/newDist;
+    //double scalar_1 = newDist/dist;
+
+    /*Broadcast::announce(to_string(cooScreenFinger1.x)+" "+to_string(cooScreenFinger1.y)+"\n"
+                        +to_string(cooScreenFinger2.x)+" "+to_string(cooScreenFinger2.y)+"\n"
+                        +to_string(m_saveCooScreenFinger1StartMovingView.x)+" "+to_string(m_saveCooScreenFinger1StartMovingView.y)+"\n"
+                        +to_string(m_saveCooScreenFinger2StartMovingView.x)+" "+to_string(m_saveCooScreenFinger2StartMovingView.y)+"\n"
+                        +to_string(dist)+"\n"
+                        +to_string(newDist)+"\n"
+                        +to_string(scalar)+"\n",1,Vector2f(10,200));*/
+
+    m_view.setSize(m_saveViewStartMovingView.getSize().x*scalar, m_saveViewStartMovingView.getSize().y*scalar);
+
+    /*if(scalar >= 1){
+        m_view.setCenter(m_view.getCenter().x+deltaCenter.x*scalar, m_view.getCenter().y+deltaCenter.y*scalar);
+    }else{
+        m_view.setCenter(m_view.getCenter().x+deltaCenter.x*scalar_1, m_view.getCenter().y+deltaCenter.y*scalar_1);
+    }*/
+
+    if(m_view.getSize().x <= 500){
+        m_view.setSize(500,281.25);
     }
+    if(m_view.getSize().x >= 3500){
+        m_view.setSize(3500,1968.75);
+    }
+
     checkViewPos();
-    updatePosVariables();
-    m_buildMode.updatePos(m_posTileBuilding);
+    //m_buildMode.updatePos(m_posTileBuilding);
 }
 
 //---------------------------------------------------------------------------------------
@@ -1189,8 +1213,8 @@ void Map::destroyRobot(Robot *robot){
     delete robot;
 }
 
-void Map::clickHandler(const sf::Event::MouseButtonEvent &mouseButtonEvent){
-    updatePosVariables();
+/*void Map::clickHandler(const sf::Event::MouseButtonEvent &mouseButtonEvent){
+    //updatePosVariables();
     if(m_buildingSelected){
         m_buildingSelected->clickHandler(mouseButtonEvent, m_cooMap, m_cooScreen);
     }
@@ -1219,29 +1243,84 @@ void Map::clickHandler(const sf::Event::MouseButtonEvent &mouseButtonEvent){
             selectBuildingOrTransport(posTile);
         }
     }
+}*/
+
+void Map::touchBeganEventHandler(const sf::Event::TouchEvent &touchEvent){
+    unsigned int finger = touchEvent.finger;
+    m_listFinger.push_back(finger);
+    m_listCooScreenFinger.push_back(Vector2i(0,0));
+    m_listCooMapFinger.push_back(Vector2f(0,0));
+
+    updatePosVariables();
 }
 
-void Map::mouseMoveHandler(){
+void Map::touchMovedEventHandler(const sf::Event::TouchEvent &touchEvent){
+    unsigned int finger = touchEvent.finger;
     updatePosVariables();
+
+    if(m_listFinger.size() == 1){ //moveView
+        if(!m_movingView){
+            m_movingView = true;
+            m_saveCooMapFinger1StartMovingView = m_listCooMapFinger.at(0);
+            m_saveViewStartMovingView = m_view;
+        }else{
+            moveViewWithFinger();
+        }
+    }else if(m_listFinger.size() == 2){ //zoomView
+        if(!m_zoomingView){
+            m_zoomingView = true;
+            m_saveCooScreenFinger1StartMovingView = m_listCooScreenFinger.at(0);
+            m_saveCooScreenFinger2StartMovingView = m_listCooScreenFinger.at(1);
+            m_saveViewStartMovingView = m_view;
+        }else{
+            zoomViewWithFinger();
+        }
+    }
+}
+
+void Map::touchEndedEventHandler(const sf::Event::TouchEvent &touchEvent){
+    unsigned int finger = touchEvent.finger;
+    updatePosVariables();
+
+    if(m_listFinger.size() == 0){ //end moveView (or end zoomView)
+
+        if(!m_movingView){
+            if(m_buildingSelected){
+                //m_buildingSelected->clickHandler(mouseButtonEvent, m_cooMap, m_cooScreen);
+            }
+
+            //sf::Vector2i posTile = getCooTileBuildingByCooMap(m_cooMap);
+            //selectBuildingOrTransport(posTile);
+        }
+        m_movingView = false;
+        m_zoomingView = false;
+
+    }else if(m_listFinger.size() == 1){ //end zoomView
+        m_zoomingView = false;
+    }
+}
+
+/*void Map::mouseMoveHandler(){
+    //updatePosVariables();
     bool leftClick = Mouse::isButtonPressed(Mouse::Button::Left);
     bool rightClick = Mouse::isButtonPressed(Mouse::Button::Right);
 
     m_buildMode.updatePos(m_posTileBuilding);
-    /*if(leftClick){
+    if(leftClick){
 
-    }*/
+    }
     if(m_buildingSelected){
         m_buildingSelected->mouseMoveHandler(m_cooScreen, m_cooMap, leftClick, rightClick);
     }
-}
+}*/
 
-void Map::wheelEventHandler(sf::Event::MouseWheelEvent &mouseWheelEvent){
+/*void Map::wheelEventHandler(sf::Event::MouseWheelEvent &mouseWheelEvent){
     if(m_buildMode.isActive()){
         m_buildMode.wheelEventHandler(mouseWheelEvent);
     }else{
         zoomView(mouseWheelEvent.delta);
     }
-}
+}*/
 
 void Map::keyPressedEventHandler(sf::Event::KeyEvent &keyEvent){
     //cout << keyEvent.code << endl;
@@ -1328,7 +1407,7 @@ void Map::update(){
     //m_lagTime += m_elapsedTime;
     //cout << m_lagTime.asMilliseconds() << endl;
 
-    moveView();
+    //moveView();
 
     Belt1::updateIndexSprite(m_elapsedTime);
 
@@ -1338,9 +1417,21 @@ void Map::update(){
 }
 
 void Map::updatePosVariables(){
-    m_cooScreen = Mouse::getPosition(*m_renderWindow);
-    m_cooMap = m_renderWindow->mapPixelToCoords(m_cooScreen,m_view);
-    m_posTileBuilding = getCooTileBuildingByCooMap(m_cooMap);
+    //on update les listes des fingers
+    for (unsigned int i = 0; i < m_listFinger.size(); ++i) {
+        unsigned int finger = m_listFinger[i];
+        if(Touch::isDown(finger)){
+            Vector2i cooScreen = Touch::getPosition(finger, *m_renderWindow);
+            m_listCooScreenFinger[i] = cooScreen;
+            Vector2f cooMap = m_renderWindow->mapPixelToCoords(cooScreen,m_view);
+            m_listCooMapFinger[i] = cooMap;
+        }else{
+            m_listFinger.erase(m_listFinger.begin()+i);
+            m_listCooScreenFinger.erase(m_listCooScreenFinger.begin()+i);
+            m_listCooMapFinger.erase(m_listCooMapFinger.begin()+i);
+            i--;
+        }
+    }
 }
 
 void Map::draw(sf::RenderWindow &window){
@@ -1400,14 +1491,14 @@ void Map::drawScreenPosUI(sf::RenderWindow &window){
     m_textCamera.setString("view: center x: "+to_string(m_view.getCenter().x)+" center y: "+to_string(m_view.getCenter().y)+" size: "+to_string(m_view.getSize().x)+" "+to_string(m_view.getSize().y));
     m_textCamera.setPosition(0,0);
     window.draw(m_textCamera);
-    m_textCamera.setString("mouse: x: "+to_string(m_cooScreen.x)+" y: "+to_string(m_cooScreen.y));
+    m_textCamera.setString("m_listFinger: size: "+to_string(m_listFinger.size()));
     m_textCamera.setPosition(0,40);
     window.draw(m_textCamera);
-    m_textCamera.setString("mouseCooMap: x: "+to_string(m_cooMap.x)+" y: "+to_string(m_cooMap.y));
-    m_textCamera.setPosition(0,60);
-    window.draw(m_textCamera);
-    m_textCamera.setString("posTileBuilding: x: "+to_string(m_posTileBuilding.x)+" y: "+to_string(m_posTileBuilding.y));
-    m_textCamera.setPosition(0,80);
-    window.draw(m_textCamera);
+    for (int i = 0; i < m_listFinger.size(); ++i) {
+        m_textCamera.setString("finger: num: "+to_string(m_listFinger[i])+" cooScreen: "+to_string(m_listCooScreenFinger[i].x)+" "+to_string(m_listCooScreenFinger[i].y)+" cooMap: "+to_string(m_listCooMapFinger[i].x)+" "+to_string(m_listCooMapFinger[i].y));
+        m_textCamera.setPosition(0,60+i*20);
+        window.draw(m_textCamera);
+    }
+
 }
 

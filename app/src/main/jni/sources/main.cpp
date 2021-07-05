@@ -113,29 +113,38 @@ int main()
 
                 case Event::MouseMoved:
                     //mousePos = Mouse::getPosition(window);
-                    myMap.mouseMoveHandler();
+                    //myMap.mouseMoveHandler();
                     //worldMap.mouseMoveHandler();
                     break;
 
-                case sf::Event::TouchBegan:
-                    if (event.touch.finger == 0){
-
-                    }
-                    break;
-
                 case Event::MouseButtonPressed:
-                    myMap.clickHandler(event.mouseButton);
+                    //myMap.clickHandler(event.mouseButton);
                     //worldMap.clickHandler(event.mouseButton);
                     break;
 
                 case Event::MouseButtonReleased:
-                    myMap.clickHandler(event.mouseButton);
+                    //myMap.clickHandler(event.mouseButton);
                     break;
 
                 case Event::MouseWheelMoved:
-                    myMap.wheelEventHandler(event.mouseWheel);
+                    //myMap.wheelEventHandler(event.mouseWheel);
                     //worldMap.wheelEventHandler(event.mouseWheel);
                     break;
+
+
+                case Event::TouchBegan:
+                    myMap.touchBeganEventHandler(event.touch);
+                    break;
+
+                case Event::TouchMoved:
+                    myMap.touchMovedEventHandler(event.touch);
+                    break;
+
+                case Event::TouchEnded:
+                    myMap.touchEndedEventHandler(event.touch);
+                    break;
+
+
             }
         }
         //logique

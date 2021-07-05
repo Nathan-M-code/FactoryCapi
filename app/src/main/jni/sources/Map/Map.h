@@ -61,11 +61,14 @@ public:
     void createRobot(const sf::Vector2f &cooMap, WorkInProgress *wip);
     void destroyRobot(Robot *robot);
 
-    void clickHandler(const sf::Event::MouseButtonEvent &mouseButtonEvent);
+    //void clickHandler(const sf::Event::MouseButtonEvent &mouseButtonEvent);
+    void touchBeganEventHandler(const sf::Event::TouchEvent &touchEvent);
+    void touchMovedEventHandler(const sf::Event::TouchEvent &touchEvent);
+    void touchEndedEventHandler(const sf::Event::TouchEvent &touchEvent);
     void keyPressedEventHandler(sf::Event::KeyEvent &keyEvent);
     void keyReleasedEventHandler(sf::Event::KeyEvent &keyEvent);
-    void mouseMoveHandler();
-    void wheelEventHandler(sf::Event::MouseWheelEvent &mouseWheelEvent);
+    //void mouseMoveHandler();
+    //void wheelEventHandler(sf::Event::MouseWheelEvent &mouseWheelEvent);
 
     void selectBuildingOrTransport(const sf::Vector2i &posTile);
 
@@ -83,9 +86,17 @@ private:
 
     sf::View m_view;
     float m_speedView;
-    sf::Vector2i m_cooScreen;
-    sf::Vector2f m_cooMap;
-    sf::Vector2i m_posTileBuilding;
+
+
+    bool m_movingView;
+    bool m_zoomingView;
+    std::vector<unsigned int> m_listFinger;
+    std::vector<sf::Vector2i> m_listCooScreenFinger;
+    std::vector<sf::Vector2f> m_listCooMapFinger;
+    sf::Vector2f m_saveCooMapFinger1StartMovingView;
+    sf::Vector2i m_saveCooScreenFinger1StartMovingView;
+    sf::Vector2i m_saveCooScreenFinger2StartMovingView;
+    sf::View m_saveViewStartMovingView;
 
     sf::Text m_textCamera;
 
@@ -129,8 +140,10 @@ private:
 
 public:
     void checkViewPos();
-    void moveView();
-    void zoomView(int delta);
+    //void moveView();
+    void moveViewWithFinger();
+    //void zoomView(int delta);
+    void zoomViewWithFinger();
 
     void updatePosVariables();
 };
